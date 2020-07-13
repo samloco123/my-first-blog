@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from .models import Post
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 from .forms import PostForm
 
 def post_list(request):
@@ -39,3 +40,11 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        posts = Post.objects.filter(Q(title__icontains=query) | Q(text__icontains=query))
+    else:
+        posts = Post.objects.filter(status="Published")
+    return render(request, 'blog/search_results.html', {'posts': posts})
