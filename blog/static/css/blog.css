@@ -2,6 +2,11 @@
     background-color: #000000;
     margin-top: 0;
     padding: 10px 10px 10px 40px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
@@ -14,6 +19,7 @@
 .content {
     margin-left: 40px;
     margin-right: 40px;
+    margin-top: 95px;
 }
 
 h1, h2 {
