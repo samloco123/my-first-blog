@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
 import unittest
 
 class NewVisitorTest(unittest.TestCase):  
@@ -17,18 +19,33 @@ class NewVisitorTest(unittest.TestCase):
         # Checks if the title and header mention CV 
         # like they should
         self.assertIn('CV page', self.browser.title)  
-        self.fail('Finish the test!')  
+        header_text = self.browser.find_element_by_tag_name('h1').text  
+        self.assertIn('My CV', header_text)  
 
         # He proceeds to update his skills section
-        
-        # He types "xxxxxxxxxxxxx" into a text box (Samuel took
-        # this course over the summer)
+        inputbox = self.browser.find_element_by_id('id_new_item')  
+        self.assertEqual(
+            inputbox.get_attribute('placeholder'),
+            'Enter experience/new skill'
+        )
+
+        # He types "Intermidiate Java programmer" into a text box 
+        inputbox.send_keys('Intermidiate Java programmer')
 
         # When he hits enter, the page updates, and now the page shows
-        # the new updated skills section 
+        # the new updated skills section
+        inputbox.send_keys(Keys.ENTER)  
+        time.sleep(1)
+
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')  
+        self.assertTrue(
+            any(row.text == 'Intermidiate Java programmer' for row in rows)
+        )
 
         # There is still a text box inviting him to add another skill. He
         # enters "xxxxxxxxxxxxxxxxxx" and saves
+        self.fail('Finish the test!')
 
         # The page updates again, and now shows both skills on the updated list
 
