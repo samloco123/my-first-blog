@@ -41,6 +41,9 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
 
+def cv_edit(request):
+    return render(request, 'blog/cv_edit.html')
+
 def search(request):
     query = request.GET.get('q')
     if query:
