@@ -23,10 +23,10 @@ class NewVisitorTest(unittest.TestCase):
         self.assertIn('My CV', header_text)  
 
         # He proceeds to update his skills section
-        inputbox = self.browser.find_element_by_id('id_new_item')  
+        inputbox = self.browser.find_element_by_id('id_new_skill')  
         self.assertEqual(
             inputbox.get_attribute('placeholder'),
-            'Enter experience/new skill'
+            'Enter new skill/experience'
         )
 
         # He types "Intermidiate Java programmer" into a text box 
@@ -37,11 +37,12 @@ class NewVisitorTest(unittest.TestCase):
         inputbox.send_keys(Keys.ENTER)  
         time.sleep(1)
 
-        table = self.browser.find_element_by_id('id_list_table')
+        table = self.browser.find_element_by_id('id_skill_table')
         rows = table.find_elements_by_tag_name('tr')  
         self.assertTrue(
-            any(row.text == 'Intermidiate Java programmer' for row in rows)
-        )
+            any(row.text == 'Intermidiate Java programmer' for row in rows), 
+            "New skill did not appear in table"
+            )
 
         # There is still a text box inviting him to add another skill. He
         # enters "xxxxxxxxxxxxxxxxxx" and saves
