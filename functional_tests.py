@@ -11,6 +11,11 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):  
         self.browser.quit()
 
+    def check_for_row_in_list_table(self, row_text):
+        table = self.browser.find_element_by_id('id_skill_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn(row_text, [row.text for row in rows])
+
     def test_can_start_a_list_and_retrieve_it_later(self):  
         # Samuel opens the edit cv page on his  website so he can update
         # parts of it as he's gained more experience/skills
@@ -26,7 +31,7 @@ class NewVisitorTest(unittest.TestCase):
         inputbox = self.browser.find_element_by_id('id_new_skill')  
         self.assertEqual(
             inputbox.get_attribute('placeholder'),
-            'Enter new skill/experience'
+            'Enter new skill'
         )
 
         # He types "Intermidiate Java programmer" into a text box 
@@ -36,21 +41,22 @@ class NewVisitorTest(unittest.TestCase):
         # the new updated skills section
         inputbox.send_keys(Keys.ENTER)  
         time.sleep(1)
-
-        table = self.browser.find_element_by_id('id_skill_table')
-        rows = table.find_elements_by_tag_name('tr')  
-        self.assertTrue(
-            any(row.text == 'Intermidiate Java programmer' for row in rows), 
-            "New skill did not appear in table"
-            )
-
+        self.check_for_row_in_list_table('Intermidiate Java programmer')
+        
         # There is still a text box inviting him to add another skill. He
-        # enters "xxxxxxxxxxxxxxxxxx" and saves
-        self.fail('Finish the test!')
+        # enters "Foreign languages" and saves
+
+        inputbox = self.browser.find_element_by_id('id_new_skill')
+        inputbox.send_keys('Foreign languages')
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
 
         # The page updates again, and now shows both skills on the updated list
+        self.check_for_row_in_list_table('Intermidiate Java programmer')
+        self.check_for_row_in_list_table('Foreign languages')
 
         # Samuel visits the view page to view his cv document
+        self.fail('Finish the test!')
 
         # Satisfied, he goes back to sleep
 

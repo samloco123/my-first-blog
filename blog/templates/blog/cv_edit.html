@@ -93,8 +93,14 @@
                                         <li>Time management</li>
                                         <li>Personal organization & effectiveness</li>
                                     </ul>
-                                    <input id="id_new_skill" placeholder="Enter new skill/experience" />
+
+                                    <form method="POST">
+                                        <input name="skill_text" id="id_new_skill" placeholder="Enter new skill" />
+                                        {% csrf_token %}
+                                    </form>
+
                                     ​<table id="id_skill_table">
+                                        <tr><td>{{ new_skill_text }}</td></tr>
                                     ​</table>
                                 </div>
                                 <br>
