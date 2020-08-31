@@ -4,7 +4,7 @@ from django.utils import timezone
 from .models import Skill, Post
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
-from .forms import PostForm
+from .forms import *
 from django.http import HttpResponse
 
 def post_list(request):
@@ -49,7 +49,29 @@ def cv_edit(request):
             return redirect('/cv/edit/')
     
     skills = Skill.objects.all()
-    return render(request, 'blog/cv_edit.html', {'skills' : skills})
+    works = Work.objects.all()
+    educs = Education.objects.all()
+    return render(request, 'blog/cv_edit.html', {'skills' : skills, 'works' : works, 'educs' : educs})
+
+def cv_add_work(request):
+    if request.method == "POST":
+        form = WorkForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('cv_edit')
+    else:
+        form = WorkForm()
+    return render(request, 'blog/cv_add_work.html', {'form': form})
+
+def cv_add_educ(request):
+    if request.method == "POST":
+        form = EducationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('cv_edit')
+    else:
+        form = EducationForm()
+    return render(request, 'blog/cv_add_educ.html', {'form': form})
 
 def search(request):
     query = request.GET.get('q')

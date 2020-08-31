@@ -23,10 +23,10 @@ class Skill(models.Model):
 
 class Work(models.Model):
     job_title = models.CharField(max_length=200)
-    dating = models.CharField(max_length=50)
+    time_frame = models.CharField(max_length=50)
     text = models.TextField(default='')
 
 class Education(models.Model):
     school = models.CharField(max_length=200)
-    qualif = models.CharField(max_length=50)
+    qualification = models.CharField(max_length=50)
     text = models.TextField(default='')

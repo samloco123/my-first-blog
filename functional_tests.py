@@ -11,10 +11,10 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):  
         self.browser.quit()
 
-    def check_for_row_in_list_table(self, row_text):
-        table = self.browser.find_element_by_id('id_skill_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn(row_text, [row.text for row in rows])
+    def check_for_skill_in_skill_list(self, skl_text):
+        slist = self.browser.find_element_by_id('id_skill_list')
+        skls = slist.find_elements_by_tag_name('li')
+        self.assertIn(skl_text, [skl.text for skl in skls])
 
     def test_can_start_a_list_and_retrieve_it_later(self):  
         # Samuel opens the edit cv page on his  website so he can update
@@ -41,7 +41,7 @@ class NewVisitorTest(unittest.TestCase):
         # the new updated skills section
         inputbox.send_keys(Keys.ENTER)  
         time.sleep(1)
-        self.check_for_row_in_list_table('-Intermidiate Java programmer')
+        self.check_for_skill_in_skill_list('Intermidiate Java programmer')
         
         # There is still a text box inviting him to add another skill. He
         # enters "Foreign languages" and saves
@@ -52,8 +52,8 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(1)
 
         # The page updates again, and now shows both skills on the updated list
-        self.check_for_row_in_list_table('-Intermidiate Java programmer')
-        self.check_for_row_in_list_table('-Foreign languages')
+        self.check_for_skill_in_skill_list('Intermidiate Java programmer')
+        self.check_for_skill_in_skill_list('Foreign languages')
 
         # Samuel visits the view page to view his cv document
         self.fail('Finish the test!')
