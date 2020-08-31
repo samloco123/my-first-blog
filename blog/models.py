@@ -17,3 +17,16 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class Skill(models.Model):
+    text = models.TextField(default='')
+
+class Work(models.Model):
+    job_title = models.CharField(max_length=200)
+    dating = models.CharField(max_length=50)
+    text = models.TextField(default='')
+
+class Education(models.Model):
+    school = models.CharField(max_length=200)
+    qualif = models.CharField(max_length=50)
+    text = models.TextField(default='')
