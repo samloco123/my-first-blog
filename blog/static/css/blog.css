@@ -99,3 +99,32 @@ h1 {
 .save.btn.btn-default {
     margin-bottom: 65pt;
 }
+
+.plinks {
+    float: right;
+    bottom: 1px;
+    margin-top: -30px;
+    margin-right: 23px;
+    position: relative;
+    margin-bottom: -70px;
+}
+
+.clinks, .clinks:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.clinks:hover {
+    color: #d2d2d2;
+    text-decoration: none;
+}
+
+
+.updt, .updt:hover{
+    color: #333333;
+    text-decoration: none;
+}
+
+.gig{
+    font-size: 40px;
+}

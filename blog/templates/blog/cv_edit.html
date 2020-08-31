@@ -9,18 +9,9 @@
         </div>
         
         <div id="name">
-            <h2>Samuel Ojogbede</h2>
-            <h4>Job Title</h4>
+            <h2 class=gig>Samuel Ojogbede</h2>
+            <br>
         </div>
-        
-        <div id="contactDetails">
-            <ul>
-                <li>e: <a href="mailto:sojogbede1@gmail.com" target="_blank">sojogbede1@gmail.com</a></li>
-                <li>m: 07444874530</li>
-            </ul>
-        </div>
-        <br>
-        <div class="clear"></div>
     </div>
     
     <div id="mainArea">
@@ -35,7 +26,6 @@
                 </div>
                 <br>
             </article>
-            <div class="clear"></div>
         </section>
                                     
         <section>
@@ -52,11 +42,10 @@
                         <br>
                     </article>
                 {% endfor %}
-                <button><a href="/cv/edit/work">Update</a></button>
+                <button class="save btn btn-default"><a class="updt" href="/cv/edit/work">Update</a></button>
                 <br>
                 <br>
             </div>
-            <div class="clear"></div>
         </section>
         
         <section>
@@ -70,8 +59,6 @@
                         <li>{{ skill.text }}</li>
                     {% endfor %}
                 </ul>
-                <br>
-                <h5>Add new skill</h2>
                 <form method="POST">
                     <input name="skill_text" id="id_new_skill" placeholder="Enter new skill" />
                     {% csrf_token %}
@@ -79,7 +66,6 @@
                 </form>
             </div>
             <br>
-            <div class="clear"></div>
         </section>
                                     
         <section>
@@ -96,12 +82,11 @@
                         <br>
                     </article>
                 {% endfor %}
-                <button><a href="/cv/edit/education">Update</a></button>
+                <button class="save btn btn-default"><a class="updt" href="/cv/edit/education">Update</a></button>
                 <br>
                 <br>
             </div>
             <br>
-            <div class="clear"></div>
         </section>
     </div>
 </div>
