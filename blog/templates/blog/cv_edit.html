@@ -52,9 +52,9 @@
                         <br>
                     </article>
                 {% endfor %}
+                <button><a href="/cv/edit/work">Update</a></button>
                 <br>
-                <!-- BUTTON -->
-
+                <br>
             </div>
             <div class="clear"></div>
         </section>
@@ -70,10 +70,12 @@
                         <li>{{ skill.text }}</li>
                     {% endfor %}
                 </ul>
-
+                <br>
+                <h5>Add new skill</h2>
                 <form method="POST">
                     <input name="skill_text" id="id_new_skill" placeholder="Enter new skill" />
                     {% csrf_token %}
+                    <button type="submit" class="save btn btn-default">Save</button>
                 </form>
             </div>
             <br>
@@ -94,6 +96,8 @@
                         <br>
                     </article>
                 {% endfor %}
+                <button><a href="/cv/edit/education">Update</a></button>
+                <br>
                 <br>
             </div>
             <br>
