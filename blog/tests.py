@@ -8,9 +8,30 @@ class CVPageTest(TestCase):
         self.assertTemplateUsed(response, 'blog/cv_edit.html')
 
     def test_can_save_a_POST_request(self):
+        self.client.post('/cv/edit/', data={'skill_text': 'A new skill'})
+
+        self.assertEqual(Skill.objects.count(), 1)
+        new_skill = Skill.objects.first()
+        self.assertEqual(new_skill.text, 'A new skill')
+
+    def test_redirects_after_POST(self):
         response = self.client.post('/cv/edit/', data={'skill_text': 'A new skill'})
-        self.assertIn('A new skill', response.content.decode())
-        self.assertTemplateUsed(response, 'blog/cv_edit.html')
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['location'], '/cv/edit/')
+    
+    def test_only_saves_items_when_necessary(self):
+        self.client.get('/cv/edit/')
+        self.assertEqual(Skill.objects.count(), 0)
+
+    def test_displays_all_skills(self):
+        Skill.objects.create(text='skilley 1')
+        Skill.objects.create(text='skilley 2')
+
+        response = self.client.get('/cv/edit/')
+
+        self.assertIn('skilley 1', response.content.decode())
+        self.assertIn('skilley 2', response.content.decode())
 
 class SkillModelTest(TestCase):
 

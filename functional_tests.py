@@ -41,7 +41,7 @@ class NewVisitorTest(unittest.TestCase):
         # the new updated skills section
         inputbox.send_keys(Keys.ENTER)  
         time.sleep(1)
-        self.check_for_row_in_list_table('Intermidiate Java programmer')
+        self.check_for_row_in_list_table('-Intermidiate Java programmer')
         
         # There is still a text box inviting him to add another skill. He
         # enters "Foreign languages" and saves
@@ -52,8 +52,8 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(1)
 
         # The page updates again, and now shows both skills on the updated list
-        self.check_for_row_in_list_table('Intermidiate Java programmer')
-        self.check_for_row_in_list_table('Foreign languages')
+        self.check_for_row_in_list_table('-Intermidiate Java programmer')
+        self.check_for_row_in_list_table('-Foreign languages')
 
         # Samuel visits the view page to view his cv document
         self.fail('Finish the test!')

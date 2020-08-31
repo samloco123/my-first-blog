@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Post
+from .models import Skill, Post
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from .forms import PostForm
@@ -43,9 +43,13 @@ def post_edit(request, pk):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 def cv_edit(request):
-    return render(request, 'blog/cv_edit.html', {
-        'new_skill_text': request.POST.get('skill_text', ''),
-    })
+    if request.method == 'POST':
+        if request.POST['skill_text'] != '':
+            Skill.objects.create(text=request.POST['skill_text'])
+            return redirect('/cv/edit/')
+    
+    skills = Skill.objects.all()
+    return render(request, 'blog/cv_edit.html', {'skills' : skills})
 
 def search(request):
     query = request.GET.get('q')
