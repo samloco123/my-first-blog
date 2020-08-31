@@ -109,7 +109,7 @@ h1 {
     margin-bottom: -70px;
 }
 
-.clinks, .clinks:visited {
+.clinks, .clinks:visited, .clinks:focus, .clinks:active {
     color: #ffffff;
     text-decoration: none;
 }
