@@ -56,10 +56,9 @@ class NewVisitorTest(unittest.TestCase):
         self.check_for_skill_in_skill_list('Foreign languages')
 
         # Samuel visits the view page to view his cv document
-        self.fail('Finish the test!')
+        self.browser.get('http://localhost:8000/cv/view')
 
         # Satisfied, he goes back to sleep
-
         self.browser.quit()
 
 if __name__ == '__main__':  
