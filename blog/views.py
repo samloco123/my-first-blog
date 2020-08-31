@@ -73,6 +73,12 @@ def cv_add_educ(request):
         form = EducationForm()
     return render(request, 'blog/cv_add_educ.html', {'form': form})
 
+def cv_view(request):
+    skills = Skill.objects.all()
+    works = Work.objects.all()
+    educs = Education.objects.all()
+    return render(request, 'blog/cv_view.html', {'skills' : skills, 'works' : works, 'educs' : educs})
+
 def search(request):
     query = request.GET.get('q')
     if query:

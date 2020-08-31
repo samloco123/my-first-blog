@@ -1,0 +1,119 @@
+{% load static %}
+!DOCTYPE html>
+<html>
+<head>
+<title>Samuel Ojogbede - Curriculum Vitae</title>
+
+<meta name="viewport" content="width=device-width"/>
+<meta name="description" content="The Curriculum Vitae of Joe Bloggs."/>
+<meta charset="UTF-8"> 
+
+<link type="text/css" rel="stylesheet" href="{% static 'css/cv_view.css' %}">
+<link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300' rel='stylesheet' type='text/css'>
+
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body id="top">
+<div id="cv" class="instaFade">
+	<div class="mainDetails">
+		<div id="headshot" class="quickFade">
+			<img src="{% static 'pictures/headshot1.jpg' %}" alt="Samuel Ojogbede" />
+		</div>
+		
+		<div id="name">
+			<h1 class="quickFade delayTwo">Samuel Ojogbede</h1>
+		</div>
+		
+		<div id="contactDetails" class="quickFade delayFour">
+			<ul>
+				<li>e: <a href="mailto:sojogbede1@gmail.com" target="_blank">sojogbede1@gmail.com</a></li>
+				<li>w: <a href="http://samloco123.pythonanywhere.com">samloco123.pythonanywhere.com</a></li>
+				<li>m: 07444874530</li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+	<div id="mainArea" class="quickFade delayFive">
+		<section>
+			<article>
+				<div class="sectionTitle">
+					<h1>Personal Profile</h1>
+				</div>
+				
+				<div class="sectionContent">
+					<p>I am a simple and flexible person. I am a good communicator and I can work in a team whilst also being capable of using my own initiative. I am skilled in dealing with problems in a resourceful manner and negotiating to achieve beneficial agreement. I am always enthusiastic to learn and undertake new challenges. Furthermore, I am fluent in three languages: Italian, English and Yoruba.</p>
+				</div>
+			</article>
+			<div class="clear"></div>
+		</section>
+		
+		
+		<section>
+			<div class="sectionTitle">
+				<h1>Work Experience</h1>
+			</div>
+			
+			<div class="sectionContent">
+				{% for work in works %}
+                    <article>
+                        <h2>{{ work.job_title }}</h2>
+                        <p class="subDetails">{{ work.time_frame }}</p>
+                        <p>{{ work.text }}</p>
+                        <br>
+                    </article>
+                {% endfor %}
+			</div>
+			<div class="clear"></div>
+		</section>
+		
+		
+		<section>
+			<div class="sectionTitle">
+				<h1>Key Skills</h1>
+			</div>
+			
+			<div class="sectionContent">
+				<ul class="keySkills">
+					{% for skill in skills %}
+                        <li>{{ skill.text }}</li>
+                    {% endfor %}
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</section>
+		
+		
+		<section>
+			<div class="sectionTitle">
+				<h1>Education</h1>
+			</div>
+			
+			<div class="sectionContent">
+				{% for educ in educs %}
+                    <article>
+                        <h2>{{ educ.school }}</h2>
+                        <p class="subDetails">{{ educ.qualification }}</p>
+                        <p>{{ educ.text }}</p>
+                        <br>
+                    </article>
+                {% endfor %}
+			</div>
+			<div class="clear"></div>
+		</section>
+		
+	</div>
+</div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-3753241-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+</body>
+</html>
